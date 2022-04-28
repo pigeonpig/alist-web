@@ -1,1 +1,0 @@
-const r=o=>{if(navigator.clipboard){navigator.clipboard.writeText(o);return}const e=document.createElement("textarea");e.value=o,document.body.appendChild(e),e.select(),document.execCommand("copy"),document.body.removeChild(e)},a=()=>navigator.clipboard?navigator.clipboard.readText():Promise.resolve("");export{r as c,a as r};
