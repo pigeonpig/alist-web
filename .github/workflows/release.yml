@@ -1,8 +1,6 @@
 name: release
 
 on:
-  watch:
-    types: [started]
   push:
     tags:
       - '*'
@@ -44,11 +42,20 @@ jobs:
           mv alist-web/build.sh .
           bash build.sh
       
+      - name: Publish npm
+        run: |
+          cd alist-web
+          cd ..
+
+      - name: Upload asserts files
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.MY_TOKEN }}
+          branch: main
+          directory: assets
+          repository: pigeonpig/assets
         
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           files: release/*
-          tag_name: Auto-${{ steps.create_timestamp.outputs.timestamp }}
-          release_name: Release-${{ steps.create_timestamp.outputs.timestamp }}
-          body: ${{ steps.tag_version.outputs.changelog }}
