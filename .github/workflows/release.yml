@@ -42,13 +42,6 @@ jobs:
           mv alist-web/build.sh .
           bash build.sh
       
-      - name: Publish npm
-        run: |
-          cd alist-web
-          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc && yarn publish
-          cd ..
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Upload asserts files
         uses: ad-m/github-push-action@master
@@ -56,7 +49,7 @@ jobs:
           github_token: ${{ secrets.MY_TOKEN }}
           branch: main
           directory: assets
-          repository: alist-org/assets
+          repository: pigeonpig/alist-web
         
       - name: Release
         uses: softprops/action-gh-release@v1
