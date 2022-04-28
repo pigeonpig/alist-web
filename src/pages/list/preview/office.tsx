@@ -37,6 +37,12 @@ const Office = ({ file }: FileProps) => {
       )}`,
     },
     {
+      name: "onlyoffice",
+      url: `http://172.22.89.236/?plugin/OnlyOffice/&path=${encodeURIComponent(
+        url,
+      )}`,
+    },
+    {
       name: "google",
       url: `https://docs.google.com/gview?url=${encodeURIComponent(
         url,
